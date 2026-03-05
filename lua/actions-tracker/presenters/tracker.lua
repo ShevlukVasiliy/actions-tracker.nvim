@@ -8,7 +8,7 @@ local function wrap_existing_mappings(sql_repo)
 	for _, mode in ipairs(modes) do
 		local mappings = vim.api.nvim_get_keymap(mode)
 		for _, map in ipairs(mappings) do
-			local lhs = map.lhs
+			local lhs = map.lhs or ""
 			local rhs = map.rhs or ""
 			local opts = {
 				noremap = map.noremap == 1,
