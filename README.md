@@ -16,7 +16,7 @@ export export LUA_PATH="./lua/?.lua;;"
 
 ### Vim pack
 
-```bash
+```lua
 vim.pack.add({
     {src = "https://github.com/shevlukvasiliy/actions-tracker.nvim"}
 })
@@ -25,6 +25,12 @@ vim.pack.add({
 ### Other
 
 See [packer.nvim](https://github.com/wbthomason/packer.nvim), [lazy.nvim](https://github.com/folke/lazy.nvim) and other plugin managers documentation to connect plugin to your neovim.
+
+### After plugin manager
+
+```lua
+require("actions-tracker").setup()
+```
 
 ## Usage
 
