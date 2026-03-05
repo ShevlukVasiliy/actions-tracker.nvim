@@ -4,6 +4,7 @@
 
 ```bash
 luarocks install lsqlite3
+luarocks --lua-version 5.1 install lsqlite3 --force
 ```
 
 And add this to your .zshrc or .bashrc
@@ -18,7 +19,8 @@ export LUA_PATH="./lua/?.lua;;"
 
 ```lua
 vim.pack.add({
-    {src = "https://github.com/shevlukvasiliy/actions-tracker.nvim"}
+    { src = "https://github.com/shevlukvasiliy/actions-tracker.nvim" },
+    { src= "https://github.com/kkharji/sqlite.lua" },
 })
 ```
 
