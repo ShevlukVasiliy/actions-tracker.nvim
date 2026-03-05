@@ -13,7 +13,7 @@ function M.setup()
 
 	local db_path = vim.fn.stdpath('data') .. '/actions-tracker.sqlite3'
 
-	local db = sqlite.db.open(db_path)
+	local db = sqlite:open(db_path)
 	if not db then
 		vim.notify("[actions-tracker] Не удалось открыть базу данных по пути: " .. db_path, vim.log.levels.ERROR)
 		return
