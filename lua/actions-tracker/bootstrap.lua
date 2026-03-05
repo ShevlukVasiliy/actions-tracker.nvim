@@ -16,7 +16,7 @@ function M.setup()
     local db_path = vim.fn.stdpath('data') .. '/actions-tracker.sqlite3'
 
     -- 3. Открытие соединения (sqlite.lua сам управляет FFI-биндингом)
-    local db = sqlite.open(db_path)
+    local db = sqlite.db.open(db_path)
     if not db then
         vim.notify("[actions-tracker] Не удалось открыть базу данных по пути: " .. db_path, vim.log.levels.ERROR)
         return
@@ -50,7 +50,7 @@ function M.setup()
         print("=== Actions Tracker Diagnosis ===")
         print("✓ sqlite.lua: " .. (package.loaded['sqlite'] and "Loaded" or "Not Loaded"))
         print("✓ DB Path: " .. db_path)
-        print("✓ DB Connected: " .. tostring(not db:is_closed()))
+        print("✓ DB Connected: " .. tostring(not db:isclosed()))
         
         -- Тестовый запрос через eval (интерфейс sqlite.lua)
         local test = db:eval("SELECT sqlite_version() as ver")
