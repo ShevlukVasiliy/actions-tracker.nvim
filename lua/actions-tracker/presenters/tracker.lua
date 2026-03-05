@@ -95,7 +95,7 @@ function M.setup(sql_repo)
 	M.start_tracking(sql_repo)
 	M.collect_mappings(sql_repo)
 
-	print("[actions-tracker] Tracking started")
+	-- print("[actions-tracker] Tracking started")
 end
 
 return M

@@ -30,11 +30,11 @@ function M.is_table_empty(t)
 	return next(t) == nil
 end
 
--- Debug print (only in development)
-function M.debug_print(...)
-	if os.getenv("ACTIONS_TRACKER_DEBUG") then
-		print(...)
-	end
-end
+-- -- Debug print (only in development)
+-- function M.debug_print(...)
+-- 	if os.getenv("ACTIONS_TRACKER_DEBUG") then
+-- 		print(...)
+-- 	end
+-- end
 
 return M

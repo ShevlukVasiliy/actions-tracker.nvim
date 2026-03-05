@@ -34,7 +34,7 @@ function M.setup()
 
 	vim.api.nvim_create_user_command("ActionsTrackerCollectMappings", function()
 		sql_repo:collect_and_save_all_mappings()
-		print("[actions-tracker] Mappings collected and saved")
+		-- print("[actions-tracker] Mappings collected and saved")
 	end, { desc = "Collect and save all current key mappings" })
 
 	vim.api.nvim_create_user_command("ActionsTrackerAnalytics", function()
@@ -43,18 +43,18 @@ function M.setup()
 	end, { desc = "Show analytics dashboard" })
 
 	vim.api.nvim_create_user_command("ActionsTrackerDiagnose", function()
-		print("=== Actions Tracker Diagnosis ===")
-		print("✓ sqlite.lua: " .. (package.loaded['sqlite'] and "Loaded" or "Not Loaded"))
-		print("✓ DB Path: " .. db_path)
-		print("✓ DB Connected: " .. tostring(not db:isclosed()))
+		-- print("=== Actions Tracker Diagnosis ===")
+		-- print("✓ sqlite.lua: " .. (package.loaded['sqlite'] and "Loaded" or "Not Loaded"))
+		-- print("✓ DB Path: " .. db_path)
+		-- print("✓ DB Connected: " .. tostring(not db:isclosed()))
 
 		local test = db:eval("SELECT sqlite_version() as ver")
 		if test and test[1] then
-			print("✓ SQLite Version: " .. test[1].ver)
+			-- print("✓ SQLite Version: " .. test[1].ver)
 		end
 	end, { desc = "Diagnose plugin issues" })
 
-	print("[actions-tracker] Plugin initialized with sqlite.lua")
+	-- print("[actions-tracker] Plugin initialized with sqlite.lua")
 end
 
 return M
