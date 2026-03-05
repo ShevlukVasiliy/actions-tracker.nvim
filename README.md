@@ -9,7 +9,7 @@ luarocks install lsqlite3
 And add this to your .zshrc or .bashrc
 
 ```bash
-export export LUA_PATH="./lua/?.lua;;"
+export LUA_PATH="./lua/?.lua;;"
 ```
 
 ## Installation
