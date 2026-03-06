@@ -81,12 +81,17 @@ function SQLRepo:save_command_event(event)
 end
 
 function SQLRepo:save_binding_event(event)
+    local rhs_value = event.rhs
+    if rhs_value == nil or rhs_value == "" then
+        rhs_value = " "
+    end
+
     safe_eval(self.db,
         "INSERT INTO binding_events (mode, lhs, rhs, timestamp) VALUES (:mode, :lhs, :rhs, :timestamp)",
         {
             mode = tostring(event.mode or "n"),
             lhs = tostring(event.lhs or " "),
-            rhs = tostring(event.rhs or " "),
+            rhs = tostring(rhs_value),
             timestamp = event.timestamp or os.time()
         }
     )
