@@ -4,8 +4,8 @@ function M.setup()
 	local ok, sqlite = pcall(require, 'sqlite')
 	if not ok then
 		vim.notify(
-			"[actions-tracker] Ошибка: sqlite.lua не найден.\n" ..
-			"Пожалуйста, установите 'kkharji/sqlite.lua' в вашу папку pack/*/start/",
+			"[actions-tracker] Error: sqlite.lua not found.\n" ..
+			"Please install 'kkharji/sqlite.lua'",
 			vim.log.levels.ERROR
 		)
 		return
@@ -15,7 +15,7 @@ function M.setup()
 
 	local db = sqlite:open(db_path)
 	if not db then
-		vim.notify("[actions-tracker] Не удалось открыть базу данных по пути: " .. db_path, vim.log.levels.ERROR)
+		vim.notify("[actions-tracker] Failed to open database at path: " .. db_path, vim.log.levels.ERROR)
 		return
 	end
 
@@ -34,7 +34,6 @@ function M.setup()
 
 	vim.api.nvim_create_user_command("ActionsTrackerCollectMappings", function()
 		sql_repo:collect_and_save_all_mappings()
-		-- print("[actions-tracker] Mappings collected and saved")
 	end, { desc = "Collect and save all current key mappings" })
 
 	vim.api.nvim_create_user_command("ActionsTrackerAnalytics", function()
@@ -43,18 +42,8 @@ function M.setup()
 	end, { desc = "Show analytics dashboard" })
 
 	vim.api.nvim_create_user_command("ActionsTrackerDiagnose", function()
-		-- print("=== Actions Tracker Diagnosis ===")
-		-- print("✓ sqlite.lua: " .. (package.loaded['sqlite'] and "Loaded" or "Not Loaded"))
-		-- print("✓ DB Path: " .. db_path)
-		-- print("✓ DB Connected: " .. tostring(not db:isclosed()))
-
-		local test = db:eval("SELECT sqlite_version() as ver")
-		if test and test[1] then
-			-- print("✓ SQLite Version: " .. test[1].ver)
-		end
+		db:eval("SELECT sqlite_version() as ver")
 	end, { desc = "Diagnose plugin issues" })
-
-	-- print("[actions-tracker] Plugin initialized with sqlite.lua")
 end
 
 return M
