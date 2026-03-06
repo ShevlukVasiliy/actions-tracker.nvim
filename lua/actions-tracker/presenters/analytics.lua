@@ -59,7 +59,7 @@ function M.show_analytics(sql_repo)
 		buf = create_analytics_buffer()
 	end
 
-	local win = vim.api.nvim_open_win(buf, true, {
+	vim.api.nvim_open_win(buf, true, {
 		relative = 'editor',
 		width = math.floor(vim.o.columns * 0.8),
 		height = math.floor(vim.o.lines * 0.8),
