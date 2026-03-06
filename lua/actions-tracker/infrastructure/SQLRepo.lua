@@ -86,9 +86,9 @@ function SQLRepo:save_key_mapping(mapping)
 	self.db:eval(
 		"INSERT INTO key_mappings (mode, lhs, rhs, desc, timestamp) VALUES (:mode, :lhs, :rhs, :desc, :timestamp)",
 		{
-			mode = tostring(event.mode or "unknown"),
-			lhs = tostring(event.lhs or " "),
-			rhs = tostring(event.rhs or " "),
+			mode = tostring(mapping.mode or "unknown"),
+			lhs = tostring(mapping.lhs or " "),
+			rhs = tostring(mapping.rhs or " "),
 			desc = tostring(mapping.desc or ""),
 			timestamp = mapping.timestamp
 		}
@@ -105,9 +105,9 @@ function SQLRepo:collect_and_save_all_mappings()
 		for _, mapping in ipairs(mappings) do
 			self:save_key_mapping({
 				mode = mode,
-				lhs = mapping.lhs or " ",
-				rhs = mapping.rhs or " ",
-				desc = mapping.desc or " ",
+				lhs = mapping.lhs,
+				rhs = mapping.rhs,
+				desc = mapping.desc,
 				timestamp = timestamp,
 			})
 		end
