@@ -81,9 +81,9 @@ function SQLRepo:save_command_event(event)
 end
 
 function SQLRepo:save_binding_event(event)
-    local rhs_value = event.rhs
-    if rhs_value == nil or rhs_value == "" then
-        rhs_value = " "
+    local safe_rhs = "mapped_function"
+    if type(event.rhs) == "string" and #event.rhs < 50 then
+        safe_rhs = event.rhs
     end
 
     safe_eval(self.db,
@@ -91,7 +91,7 @@ function SQLRepo:save_binding_event(event)
         {
             mode = tostring(event.mode or "n"),
             lhs = tostring(event.lhs or " "),
-            rhs = tostring(rhs_value),
+            rhs = safe_rhs,
             timestamp = event.timestamp or os.time()
         }
     )
