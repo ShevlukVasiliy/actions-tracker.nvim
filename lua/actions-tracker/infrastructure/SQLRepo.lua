@@ -72,7 +72,12 @@ end
 function SQLRepo:save_binding_event(event)
 	self.db:eval(
 		"INSERT INTO binding_events (mode, lhs, rhs, timestamp) VALUES (:mode, :lhs, :rhs, :timestamp)",
-		{ mode = event.mode, lhs = event.lhs or " ", rhs = event.rhs or " ", timestamp = event.timestamp }
+		{
+			mode = tostring(event.mode or "unknown"),
+			lhs = tostring(event.lhs or " "),
+			rhs = tostring(event.rhs or " "),
+			timestamp = event.timestamp
+		}
 	)
 	return last_rowid(self.db)
 end
@@ -80,7 +85,13 @@ end
 function SQLRepo:save_key_mapping(mapping)
 	self.db:eval(
 		"INSERT INTO key_mappings (mode, lhs, rhs, desc, timestamp) VALUES (:mode, :lhs, :rhs, :desc, :timestamp)",
-		{ mode = mapping.mode, lhs = mapping.lhs or " ", rhs = mapping.rhs or " ", desc = mapping.desc or "", timestamp = mapping.timestamp }
+		{
+			mode = tostring(event.mode or "unknown"),
+			lhs = tostring(event.lhs or " "),
+			rhs = tostring(event.rhs or " "),
+			desc = tostring(mapping.desc or ""),
+			timestamp = mapping.timestamp
+		}
 	)
 	return last_rowid(self.db)
 end
